@@ -800,15 +800,15 @@ for t in range(len(tSet)):
             alpha[t,g,j] = weight_g[g] * weight_tj[t,j]   
 '''
 
-# track RAM usage and elapsed time during inputdata loading 
+# track RAM usage and elapsed time during input data loading 
 memory = psutil.virtual_memory()
 print(f'Input Data Loaded... ({(init_available_memory - memory.available / (1024 ** 3) ):.2f} GB) Loaded... in {round((perf_counter()-strt)/60, 1)} minutes')
 
-#%% Define Gurobi licence papameters and environment
+#%% Define Gurobi licence parameters and environment
 gurobiparams = {
-"WLSACCESSID": '3ab6af7f-4081-4dd9-91c5-f1cb244644a9',
-"WLSSECRET": 'b62dc636-5e78-4cd8-8e9e-d507bc2ede2e',
-"LICENSEID": 2458030, 
+"WLSACCESSID": 'XXXXXXXXXXXXX',
+"WLSSECRET": 'XXXXXXXXXXX',
+"LICENSEID": XXXXXXXX, 
 }
 env = gp.Env(params=gurobiparams)
 
@@ -816,7 +816,7 @@ env = gp.Env(params=gurobiparams)
 
 strt = perf_counter() # reset elapsed-time
 
-# define a new model with the gurobi environment parameters
+# define a new model with the GUROBI environment parameters
 gep = gp.Model(env=env)
 
 n_timesteps = len(tSet) #time-steps (years)
@@ -1763,4 +1763,5 @@ for t in range(len(tSet)):
             
 # Delete Unneccesary Data that will not be used from now on...
 #del baseLoad, baseLoad_, EVLoad, EVLoad_
+
 
