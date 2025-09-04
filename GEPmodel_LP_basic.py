@@ -104,7 +104,7 @@ def get_results(get_v=True, get_y=True, get_u=True):
                         for b in B:
                             for bb in A[b]:
                                 if bb != b:
-                                    df_y.loc[len(df_y)] = [ int(t), subG[g], H[h], b, bb, weight_g[g] * weighted_y[t,g,h,b,bb] ]
+                                    df_y.loc[len(df_y)] = [ int(t), subG[g], H[h], b, bb, weight_g[g] * weighted_y[t,g,h,B.index(b),B.index(bb)] ]
     
     # unmet demand
     df_u = pd.DataFrame(columns=["t", "g", "h", "u"])
@@ -1763,5 +1763,6 @@ for t in range(len(tSet)):
             
 # Delete Unneccesary Data that will not be used from now on...
 #del baseLoad, baseLoad_, EVLoad, EVLoad_
+
 
 
