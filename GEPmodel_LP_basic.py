@@ -833,13 +833,14 @@ s[t,b,k] : new capacity (GW) of type k in year t in region b (positive)
 v[t,g,h,j,b,k] : amount of electricity (MWh) to be generated in year t in day g repcurve j at h in region b in unit type k  
 y[t,g,h,j,b,bb] : amount of electricity (MWh) to be transmitted from b to bb in year t in day g repcurve j at h
 u[t,g,h,j,b] : unmet demand in year t day g repcurve j at hour h in region b
+NC_reg_tr[t, tt, b, bb] : regional connectable new capacity of region b in timewindow ending with t to be transferred region bb in timewindow ending with t 
 '''
 s = gep.addMVar((n_timesteps, n_regions, n_subunits), lb=0.0, name="s") # investment decision
 v = gep.addMVar((n_timesteps, n_rep_days, n_hours, n_scenarios, n_regions, n_units), vtype=GRB.CONTINUOUS, lb=0.0, name="v") # generation decision
 y = gep.addMVar((n_timesteps, n_rep_days, n_hours, n_scenarios, n_regions, n_regions), vtype=GRB.CONTINUOUS, lb=0.0, name="y") # transmission decision
 u = gep.addMVar((n_timesteps, n_rep_days, n_hours, n_scenarios, n_regions), vtype=GRB.CONTINUOUS, lb=0.0, name="u") # unmet demand
 
-NC_reg_tr= gep.addMVar((n_timesteps, n_timesteps, n_regions, n_regions), lb=0.0, name="NC_reg_tr") # investment decision
+NC_reg_tr= gep.addMVar((n_timesteps, n_timesteps, n_regions, n_regions), lb=0.0, name="NC_reg_tr") # regional new capacity transfer decision
 
 '''
 CAP[t,b,k] : installed capacity (GW) of type k unit in year t in region b 
@@ -1762,3 +1763,4 @@ for t in range(len(tSet)):
             
 # Delete Unneccesary Data that will not be used from now on...
 #del baseLoad, baseLoad_, EVLoad, EVLoad_
+
